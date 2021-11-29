@@ -32,7 +32,7 @@ landing_page = Template("""
 <!DOCTYPE html>
 <head>
   {{ resources }}
-  <title>Example Visualization Web App</title>
+  <title>Data Visualization Project</title>
   
   <style>
   
