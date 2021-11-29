@@ -6,7 +6,7 @@ from bokeh.embed import json_item
 from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.layouts import gridplot
-from bokeh.models import Slider, Range1d, , HoverTool
+from bokeh.models import Slider, Range1d, HoverTool
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, CustomJS, TapTool
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
