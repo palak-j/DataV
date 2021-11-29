@@ -6,7 +6,7 @@ from bokeh.embed import json_item
 from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.layouts import gridplot
-from bokeh.models import Slider, Range1d
+from bokeh.models import Slider, Range1d, , HoverTool
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, CustomJS, TapTool
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -182,28 +182,26 @@ def produce_visual1():
 @app.route('/visual2')
 def produce_visual2():
       
-  source_bars = ColumnDataSource({'x': [1, 2, 3], 'y': [2, 4, 1] , 'colnames': ['A', 'B', 'C']})
-  lines_y = [np.random.random(5) for i in range(3)]
+  nm = data[data['odometer']>0.0]
+  #select_tools = ['box_select', 'lasso_select', 'poly_select', 'tap', 'reset']
 
-  plot1 = figure(tools = 'tap', width=300, height=300)
-  bars = plot1.vbar(x = 'x', top = 'y', source = source_bars, bottom = 0, width = 0.5)
-
-  plot2 = figure(width=300, height=300)
-  lines = plot2.line(x = 'x', y = 'y', source = ColumnDataSource({'x': np.arange(5), 'y': lines_y[0]}))
-  lines.visible = False
-
-  code = '''if (cb_data.source.selected.indices.length > 0){
-            lines.visible = true;
-            var selected_index = cb_data.source.selected.indices[0];
-            lines.data_source.data['y'] = lines_y[selected_index]
-            lines.data_source.change.emit(); 
-          }'''
-
-  plots = row(plot1, plot2)
-  plot1.select(TapTool).callback = CustomJS(args = {'lines': lines, 'lines_y': lines_y}, code = code)
-    
+  graph = figure(title = "Bokeh Scatter Graph", toolbar_location='below')
+  x = np.array(nm['odometer'])
+  y = np.array(nm['price'])
+  manufacturer = np.array(nm['manufacturer'])
+  cds = ColumnDataSource(data = {'x': x , 'y': y, 'manuf': manufacturer})
   
-  return json.dumps(json_item(plots, "visualization2"))
+  
+  tooltips = [
+            ('Price', '@y'),
+            ('Odometer', '@x'),
+            ('Manufacturer', '@manuf')
+           ]
+  graph.scatter(x = 'x', y = 'y',source = cds, marker = "circle", size = 5, fill_color = "grey")
+  graph.x_range = Range1d(2000, 50000)
+  graph.add_tools(HoverTool(tooltips=tooltips))
+  
+  return json.dumps(json_item(graph, "visualization2"))
 
 
 
