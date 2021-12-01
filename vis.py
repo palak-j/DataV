@@ -32,7 +32,7 @@ landing_page = Template("""
 <!DOCTYPE html>
 <head>
   {{ resources }}
-  <title>Data Visualization Project</title>
+  <title>Example Visualization Web App</title>
   
   <style>
   
@@ -51,13 +51,15 @@ landing_page = Template("""
   <div class= "topnav" id="myTopnav">
   <nav>
   <ul>
+  
   <li style="color: white; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a style="color:white;">Data Visualization</a></li>
-  <li><a href="/"><b>HOME</b></a></li>
+  <li><a href="#one"><b>HOME</b></a></li>
   <li><a href="/team"><b>TEAM</b></a></li>
 
+  </ul>
   
   </div>
-  
+
   <div id="visualization0" >
   
   <div class="img-container">     
@@ -80,8 +82,10 @@ landing_page = Template("""
       .then(function(item) {return Bokeh.embed.embed_item(item);})
   </script>
   
+  
 </body>
 """)
+
 
 team_page = Template("""
 <!DOCTYPE html>
@@ -96,13 +100,11 @@ team_page = Template("""
   <ul>
   <li style="color: white; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a style="color:white;">Data Visualization</a></li>
   <li><a href="/"><b>HOME</b></a></li>
-  <li><a href="Team"><b>TEAM</b></a></li>
-
+  <li><a href="/team"><b>TEAM</b></a></li>
    </div>
-
 </body>
-
 """)
+
 
 #print(data)
 
@@ -151,7 +153,7 @@ def home():
   return landing_page.render(resources=CDN.render())
 
 @app.route('/team')
-def home():
+def team():
     
   return team_page.render(resources=CDN.render())
 
@@ -161,7 +163,7 @@ def produce_visual0():
     
     text = ' '.join(data['manufacturer'].tolist())
     mask = np.array(Image.open('car.jpg'))
-    wordcloud = WordCloud(width = 7000, height = 5000, random_state=1, prefer_horizontal=1,background_color='steelblue', contour_color='cornflowerblue', colormap='Set2', contour_width=4, collocations=True, mask=mask).generate(text)
+    wordcloud = WordCloud(width = 7000, height = 5000, random_state=1, prefer_horizontal=1,background_color='white', contour_color='cornflowerblue', colormap='Set2', contour_width=4, collocations=True, mask=mask).generate(text)
     img = io.BytesIO()
     wordcloud.to_image().save(img, 'PNG')
     img.seek(0)
@@ -234,7 +236,7 @@ def produce_visual2():
   graph.scatter(x = 'x', y = 'y',source = cds, marker = "circle", size = 5, fill_color = "grey")
   graph.x_range = Range1d(2000, 50000)
   graph.add_tools(HoverTool(tooltips=tooltips))
-  
+
   return json.dumps(json_item(graph, "visualization2"))
 
 
