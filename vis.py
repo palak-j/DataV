@@ -93,21 +93,99 @@ landing_page = Template("""
 """)
 
 
+documentation_page = Template("""
+<!DOCTYPE html>
+<head>
+  {{ resources }}
+  <title>Example Visualization Web App</title>
+  
+  <style>
+  li
+    { 
+    display:inline; 
+    }  
+  
+  </style>
+</head>
+<body>
+
+  <div class= "topnav" id="myTopnav">
+  <nav>
+  <ul>
+  
+  <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
+
+  </ul>
+  
+  </div>
+
+</body>
+""")
+
+video_page = Template("""
+<!DOCTYPE html>
+<head>
+  {{ resources }}
+  <title>Example Visualization Web App</title>
+  
+  <style>
+  li
+    { 
+    display:inline; 
+    }  
+  
+  </style>
+</head>
+<body>
+
+  <div class= "topnav" id="myTopnav">
+  <nav>
+  <ul>
+  
+  <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
+
+  </ul>
+  
+  </div>
+
+</body>
+""")
+
 team_page = Template("""
 <!DOCTYPE html>
 <head>
   {{ resources }}
   <title>Example Visualization Web App</title>
   
+  <style>
+  li
+    { 
+    display:inline; 
+    }  
+  
+  </style>
 </head>
 <body>
+
   <div class= "topnav" id="myTopnav">
   <nav>
   <ul>
-  <li style="color: white; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a style="color:white;">Data Visualization</a></li>
-  <li><a href="/"><b>HOME</b></a></li>
-  <li><a href="/team"><b>TEAM</b></a></li>
-   </div>
+  
+  <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/documentation" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/video" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
+
+  </ul>
+  
+  </div>
+
 </body>
 """)
 
@@ -157,6 +235,18 @@ print(freq)
 def home():
     
   return landing_page.render(resources=CDN.render())
+
+
+@app.route('/documentation')
+def documentation():
+    
+  return team_page.render(resources=CDN.render())
+
+
+@app.route('/video')
+def video():
+    
+  return team_page.render(resources=CDN.render())
 
 @app.route('/team')
 def team():
