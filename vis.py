@@ -21,6 +21,7 @@ from flask import Response
 from matplotlib.figure import Figure
 from PIL import Image
 from collections import OrderedDict
+from bokeh.transform import jitter
 
 print(os.getcwd())
 
@@ -93,7 +94,7 @@ documentation_page = Template("""
 <!DOCTYPE html>
 <head>
   {{ resources }}
-  <title>Example Visualization Web App</title>
+  <title>Data Visualization Web App</title>
   
   <style>
   li
@@ -300,27 +301,24 @@ def produce_visual1():
 
 @app.route('/visual2')
 def produce_visual2():
-      
-  nm = data[data['odometer']>0.0]
-  #select_tools = ['box_select', 'lasso_select', 'poly_select', 'tap', 'reset']
-
-  graph = figure(title = "Bokeh Scatter Graph", toolbar_location='below')
-  x = np.array(nm['odometer'])
-  y = np.array(nm['price'])
-  manufacturer = np.array(nm['manufacturer'])
-  cds = ColumnDataSource(data = {'x': x , 'y': y, 'manuf': manufacturer})
   
+  df4 = data.groupby(['manufacturer'])['price'].mean().reset_index()  
+  
+  cds1 = ColumnDataSource(data = {'x': np.array(df4['manufacturer']) , 'y': np.array(df4['price'])})
   
   tooltips = [
-            ('Price', '@y'),
-            ('Odometer', '@x'),
-            ('Manufacturer', '@manuf')
-           ]
-  graph.scatter(x = 'x', y = 'y',source = cds, marker = "circle", size = 5, fill_color = "grey")
-  graph.x_range = Range1d(2000, 50000)
-  graph.add_tools(HoverTool(tooltips=tooltips))
+            ('Price', '@y{1.111}'),
+            ('Manufacturer', '@x')]
+  
+  p = figure(plot_width=800, plot_height=300, x_range= df4['manufacturer'].tolist(), 
+           title="Manuf v/s price")
+  p.circle(x=jitter('x', width=0.6, range=p.x_range), y='y' ,  source=cds1,  size=5, fill_color="blue", line_color="steelblue", line_width=2)
+  p.xaxis.major_label_orientation = "vertical"
+  p.add_tools(HoverTool(tooltips=tooltips))
 
-  return json.dumps(json_item(graph, "visualization2"))
+  
+
+  return json.dumps(json_item(p, "visualization2"))
 
 
 
