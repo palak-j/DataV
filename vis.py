@@ -114,10 +114,9 @@ documentation_page = Template("""
   <ul>
   
   <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
-  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>DOCUMENTATION</b></a></li>
-  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/documentation" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/video" style="color:black;"><b>VIDEO</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
-
   </ul>
   
   </div>
@@ -146,8 +145,8 @@ video_page = Template("""
   <ul>
   
   <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
-  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>DOCUMENTATION</b></a></li>
-  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/documentation" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/video" style="color:black;"><b>VIDEO</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
 
   </ul>
