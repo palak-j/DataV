@@ -53,7 +53,7 @@ landing_page = Template("""
   <ul>
   <li style="color: white; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a style="color:white;">Data Visualization</a></li>
   <li><a href="/"><b>HOME</b></a></li>
-  <li><a href="team"><b>TEAM</b></a></li>
+  <li><a href="team.html"><b>TEAM</b></a></li>
 
   
   </div>
