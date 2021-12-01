@@ -52,20 +52,17 @@ landing_page = Template("""
   </style>
 </head>
 <body>
-
   <div class= "topnav" id="myTopnav">
   <nav>
   <ul>
   
   <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
-  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>DOCUMENTATION</b></a></li>
-  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/documentation" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/video" style="color:black;"><b>VIDEO</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
-
   </ul>
   
   </div>
-
   <div id="visualization0" >
   
   <div class="img-container">     
@@ -73,7 +70,6 @@ landing_page = Template("""
      <img src="/visual0" width="1000" height="400" >
   </div>
   </div>
-
   <div id="visualization1">Visualization 1</div>
   <script>
     fetch('/visual1')
@@ -108,7 +104,6 @@ documentation_page = Template("""
   </style>
 </head>
 <body>
-
   <div class= "topnav" id="myTopnav">
   <nav>
   <ul>
@@ -120,7 +115,6 @@ documentation_page = Template("""
   </ul>
   
   </div>
-
 </body>
 """)
 
@@ -139,7 +133,6 @@ video_page = Template("""
   </style>
 </head>
 <body>
-
   <div class= "topnav" id="myTopnav">
   <nav>
   <ul>
@@ -148,11 +141,9 @@ video_page = Template("""
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/documentation" style="color:black;"><b>DOCUMENTATION</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/video" style="color:black;"><b>VIDEO</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
-
   </ul>
   
   </div>
-
 </body>
 """)
 
@@ -171,7 +162,6 @@ team_page = Template("""
   </style>
 </head>
 <body>
-
   <div class= "topnav" id="myTopnav">
   <nav>
   <ul>
@@ -180,11 +170,9 @@ team_page = Template("""
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/documentation" style="color:black;"><b>DOCUMENTATION</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/video" style="color:black;"><b>VIDEO</b></a></li>
   <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
-
   </ul>
   
   </div>
-
 </body>
 """)
 
@@ -338,6 +326,3 @@ def produce_visual2():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
