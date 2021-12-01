@@ -83,8 +83,26 @@ landing_page = Template("""
 </body>
 """)
 
+team_page = Template("""
+<!DOCTYPE html>
+<head>
+  {{ resources }}
+  <title>Example Visualization Web App</title>
+  
+</head>
+<body>
+  <div class= "topnav" id="myTopnav">
+  <nav>
+  <ul>
+  <li style="color: white; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a style="color:white;">Data Visualization</a></li>
+  <li><a href="/"><b>HOME</b></a></li>
+  <li><a href="Team"><b>TEAM</b></a></li>
 
+   </div>
 
+</body>
+
+""")
 
 #print(data)
 
@@ -131,6 +149,11 @@ print(freq)
 def home():
     
   return landing_page.render(resources=CDN.render())
+
+@app.route('/team')
+def home():
+    
+  return team_page.render(resources=CDN.render())
 
 
 @app.route('/visual0')
