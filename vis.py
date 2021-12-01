@@ -23,6 +23,7 @@ from PIL import Image
 from collections import OrderedDict
 from bokeh.transform import jitter
 
+
 print(os.getcwd())
 
 data = pd.read_pickle("sample.p")
@@ -301,24 +302,56 @@ def produce_visual1():
 
 @app.route('/visual2')
 def produce_visual2():
+  p = data[data['manufacturer']!= 'na'] 
+  df_ref = p.groupby(['condition'])['price'].mean().reset_index()
+
+  df_cond_manuf = p.groupby(['condition', 'manufacturer'])['price'].mean()
+  list_ref = []
+  for cond in df_ref['condition']:
+    list_ref.append(df_cond_manuf[cond].tolist())
+
+    
+  df4 = p.groupby(['manufacturer'])['price'].mean().reset_index()  
   
-  df4 = data.groupby(['manufacturer'])['price'].mean().reset_index()  
-  
-  cds1 = ColumnDataSource(data = {'x': np.array(df4['manufacturer']) , 'y': np.array(df4['price'])})
-  
+  source_bars = ColumnDataSource({'x': np.array(df_ref['condition']), 'y': np.array(df_ref['price'])})
+
+  circle_y = np.array(list_ref)
+
+
   tooltips = [
             ('Price', '@y{1.111}'),
             ('Manufacturer', '@x')]
-  
-  p = figure(plot_width=800, plot_height=300, x_range= df4['manufacturer'].tolist(), 
-           title="Manuf v/s price")
-  p.circle(x=jitter('x', width=0.6, range=p.x_range), y='y' ,  source=cds1,  size=5, fill_color="blue", line_color="steelblue", line_width=2)
-  p.xaxis.major_label_orientation = "vertical"
-  p.add_tools(HoverTool(tooltips=tooltips))
 
-  
+  plot1 = figure(plot_width=480, plot_height=450, y_range=df_ref['condition'], tools = 'tap', toolbar_location="below")
+  bars = plot1.hbar(y = 'x', right = 'y', source = source_bars, height = 0.5)
+  plot1.xaxis.axis_label = 'Avg. Price'
+  #plot1.title.text = 'Condition'
 
-  return json.dumps(json_item(p, "visualization2"))
+  plot2 = figure(plot_width=750, plot_height=450, x_range=df4['manufacturer'], toolbar_location="above")
+  circles = plot2.circle(x = 'x', y = 'y', source = ColumnDataSource({'x': np.array(df4['manufacturer']) , 'y': df4['price']}), size=5, fill_color="blue", line_color="steelblue", line_width=2)
+
+  plot2.xaxis.axis_label = 'Manufacturer'
+  plot2.yaxis.axis_label = 'Avg. Price'
+  circles.visible = True
+
+
+  plot2.xaxis.major_label_orientation = "vertical"
+  plot2.add_tools(HoverTool(tooltips=tooltips))
+
+  code = '''if (cb_data.source.selected.indices.length > 0){
+        circles.visible = true;
+        var selected_index = cb_data.source.selected.indices[0];
+        circles.data_source.data['y'] = circle_y[selected_index]
+        circles.data_source.change.emit(); 
+        
+      }'''
+
+
+  plots = row(plot2, plot1)
+  plot1.select(TapTool).callback = CustomJS(args = {'circles': circles, 'circle_y': circle_y}, code = code)   
+
+
+  return json.dumps(json_item(plots, "visualization2"))
 
 
 
