@@ -44,6 +44,11 @@ landing_page = Template("""
   
   }
   
+  li
+    { 
+    display:inline; 
+    }  
+  
   </style>
 </head>
 <body>
@@ -52,9 +57,10 @@ landing_page = Template("""
   <nav>
   <ul>
   
-  <li style="color: white; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a style="color:white;">Data Visualization</a></li>
-  <li><a href="#one"><b>HOME</b></a></li>
-  <li><a href="/team"><b>TEAM</b></a></li>
+  <li style="color: white; margin-left: -50px; font-size: 2em; font-family: Impact, Charcoal, serif; background: #000000; padding: 1.2% 2.5%; "><a href="/"; style="color:white;">Data Visualization</a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>DOCUMENTATION</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>VIDEO</b></a></li>
+  <li style="color: black; margin-left: -8px; font-size: 2em; font-family: Impact, Charcoal, serif;  padding: 1.2% 2.5%; "><a href="/team" style="color:black;"><b>TEAM</b></a></li>
 
   </ul>
   
